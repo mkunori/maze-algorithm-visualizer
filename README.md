@@ -1,7 +1,9 @@
 # Maze Algorithm Visualizer
 
 React + TypeScript + Viteで動作する、迷路生成・探索の学習アプリです。
-[参照したSites版](https://maze-algorithm-laboratory.guzaisann.chatgpt.site/)の画面、操作、教材、アルゴリズムを引き継ぎました。
+迷路生成と経路探索を1ステップずつ観察し、データ構造やC#実装例とともにアルゴリズムを学べます。
+
+[公開サイトを開く](https://mkunori.github.io/maze-algorithm-visualizer/)
 
 ## 実行
 
@@ -35,9 +37,13 @@ npm run preview
 
 ## GitHub Pages
 
-レビュー後にmainへmergeすると、Actionsがテスト・build・deployを実行します。リポジトリの **Settings → Pages → Source** を **GitHub Actions** に設定してください。
+`main`へのpushで、GitHub Actionsがテスト・build・GitHub Pagesへのdeployを実行します。Pull Requestと`main`以外のブランチへのpushでは、テストとbuildを実行します。
 
-公開先は `https://mkunori.github.io/maze-algorithm-visualizer/` です（merge・Pages設定後）。Viteのbaseはリポジトリ名に合わせています。PR・ブランチpushではbuild/testのみ実行し、deployしません。
+このリポジトリをfork、またはcloneして自分のGitHubリポジトリで公開する場合は、公開先リポジトリの **Settings → Pages → Source** を **GitHub Actions** に設定してください。
+
+現在の`vite.config.ts`の`base`は`/maze-algorithm-visualizer/`です。別のリポジトリ名で公開する場合は、`base`を`/<リポジトリ名>/`に変更してください。例えば、リポジトリ名が`maze-demo`なら`/maze-demo/`にします。
+
+プロジェクトサイトの公開URLは`https://<ユーザー名>.github.io/<リポジトリ名>/`です。このリポジトリの公開URLは https://mkunori.github.io/maze-algorithm-visualizer/ です。
 
 ## 構成
 
@@ -45,11 +51,11 @@ npm run preview
 - `src/useMaze.ts`: 再生・生成・探索・編集の状態管理
 - `src/draw.ts`: Canvas描画
 - `src/types.ts`: アプリ状態の型
-- `src/engine.js`: Sites版から継承した生成・探索エンジン（JSDocで状態型を指定）
+- `src/engine.js`: 迷路生成・経路探索エンジン（JSDocで状態型を指定）
 - `src/codes.js`, `src/extra-codes.js`: C#教材
 - `tests/`: アルゴリズムと画面操作の自動テスト
 
-画面・状態管理・描画はTypeScriptで実装しています。検証済みアルゴリズムとC#教材は既存JavaScriptモジュールを保持しており、サーバーやSitesの実行環境には依存しません。
+画面・状態管理・描画はTypeScript、生成・探索エンジンとC#教材はJavaScriptモジュールで実装しています。ブラウザー内で動作する静的Webアプリです。
 
 ## 検証
 
